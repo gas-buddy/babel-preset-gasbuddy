@@ -1,0 +1,30 @@
+{
+  "name": "babel-preset-gasbuddy",
+  "version": "1.0.0",
+  "description": "GasBuddy opinions about the best set of Babel things to use",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gas-buddy/babel-preset-gasbuddy.git"
+  },
+  "keywords": [
+    "babel",
+    "babel-preset-node6",
+    "es2017",
+    "es6",
+    "es7",
+    "async",
+    "babel-preset"
+  ],
+  "author": "GasBuddy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gas-buddy/babel-preset-gasbuddy/issues"
+  },
+  "dependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.7.4",
+    "babel-plugin-transform-object-entries": "^1.0.0",
+    "babel-preset-node6": "^11.0.0"
+  },
+  "homepage": "https://github.com/gas-buddy/babel-preset-gasbuddy#readme"
+}
