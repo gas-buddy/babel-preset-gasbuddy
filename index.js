@@ -7,4 +7,9 @@ module.exports = {
     require('babel-plugin-transform-async-to-generator'),
     require('babel-plugin-transform-object-entries'),
   ],
+  env: {
+    test: {
+      plugins: ["istanbul"]
+    }
+  }
 };
