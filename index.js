@@ -1,11 +1,18 @@
 /* global module */
 module.exports = {
+  sourceMaps: "inline",
   presets: [
-    require('babel-preset-node6'),
+    ["env", {
+      "targets": {
+        "node": "current",
+      },
+      "exclude": ["transform-async-to-generator"],
+    }],
+    "react",
   ],
   plugins: [
-    require('babel-plugin-transform-async-to-generator'),
-    require('babel-plugin-transform-object-entries'),
+    ["fast-async", { spec: true }],
+    "transform-object-entries",
   ],
   env: {
     test: {
