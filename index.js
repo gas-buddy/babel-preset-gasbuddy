@@ -1,6 +1,7 @@
 /* global module */
 module.exports = {
   sourceMaps: "inline",
+  retainLines: true,    
   presets: [
     ["env", {
       "targets": {
