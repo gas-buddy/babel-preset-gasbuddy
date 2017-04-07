@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-gasbuddy",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "GasBuddy opinions about the best set of Babel things to use",
   "main": "index.js",
   "repository": {
@@ -22,13 +22,16 @@
     "url": "https://github.com/gas-buddy/babel-preset-gasbuddy/issues"
   },
   "dependencies": {
+    "babel-plugin-css-modules-transform": "^1.2.7",
     "babel-plugin-istanbul": "^4.0.0",
     "babel-plugin-transform-class-properties": "^6.23.0",
     "babel-plugin-transform-object-entries": "^1.0.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.1.11",
     "babel-preset-react": "^6.23.0",
-    "fast-async": "^6.2.1"
+    "babel-preset-react-optimize": "^1.0.1",
+    "fast-async": "^6.2.1",
+    "react-hot-loader": "3.0.0-beta.6"
   },
   "homepage": "https://github.com/gas-buddy/babel-preset-gasbuddy#readme"
 }
