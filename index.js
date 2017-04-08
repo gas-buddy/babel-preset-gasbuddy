@@ -33,7 +33,7 @@ module.exports = function (babel, args) {
 
   if (isWebpack) {
     config.presets[0][1].targets = { browsers: args.browsers || '> 2% in US' };
-    config.presets[0][1].modules: false,
+    config.presets[0][1].modules = false;
     if (env === 'development') {
       config.plugins.push('react-hot-loader/babel');
     }
