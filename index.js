@@ -19,7 +19,7 @@ module.exports = function (babel, args) {
     presets: [
       ['env', {
         targets: { node: 'current' },
-        exclude: ['transform-async-to-generator'],
+        exclude: ['transform-regenerator', 'transform-async-to-generator'],
       }],
       'react'
     ],
@@ -32,10 +32,12 @@ module.exports = function (babel, args) {
   };
 
   if (isWebpack) {
-    config.presets[0][1].targets = { browsers: args.browsers || '> 2% in US' };
+    config.presets[0][1].targets = {
+      browsers: args.browsers || '> 2% in US',
+    };
     config.presets[0][1].modules = false;
     if (env === 'development') {
-      config.plugins.push('react-hot-loader/babel');
+      config.plugins.unshift('react-hot-loader/babel');
     }
     if (env === 'production') {
       config.presets.push('react-optimize');
