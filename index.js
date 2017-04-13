@@ -43,7 +43,9 @@ module.exports = function (babel, args) {
       config.presets.push('react-optimize');
     }
   } else {
-    config.plugins.push('css-modules-transform');
+    config.plugins.push(['css-modules-transform', {
+      generateScopedName: '[name]__[local]___[hash:base64:5]',
+    }]);
     if (env !== 'production') {
       config.retainLines = true;
     }
