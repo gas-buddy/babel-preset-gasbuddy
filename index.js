@@ -37,7 +37,15 @@ module.exports = function (babel, args) {
     };
     config.presets[0][1].modules = false;
     if (env === 'development') {
-      config.plugins.unshift('react-hot-loader/babel');
+      try {
+        require('react-hot-loader/babel');
+        config.plugins.unshift('react-hot-loader/babel');
+      } catch (error) {
+        console.log(
+          'babel-preset-gasbuddy requires react-hot-loader@^3.0.0-beta.6 for hot load support.\n',
+          'Please add a dev only dependency to your project if you want hot loader support.'
+        );
+      }
     }
     if (env === 'production') {
       config.presets.push('react-optimize');
