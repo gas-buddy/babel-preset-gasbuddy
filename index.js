@@ -36,6 +36,7 @@ module.exports = function (babel, args) {
       browsers: args.browsers || '> 2% in US',
     };
     config.presets[0][1].modules = false;
+    config.plugins.push('transform-runtime');
     if (env === 'development') {
       try {
         require('react-hot-loader/babel');
