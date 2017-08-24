@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-gasbuddy",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description": "GasBuddy opinions about the best set of Babel things to use",
   "main": "index.js",
   "repository": {
