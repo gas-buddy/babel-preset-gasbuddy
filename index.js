@@ -24,14 +24,14 @@ module.exports = function (babel, args) {
       'react'
     ],
     plugins: [
-      ['transform-object-rest-spread', { 'useBuiltIns': true }],
-      ['fast-async', { spec: true }],
-      'transform-object-entries',
       'babel-plugin-transform-class-properties'
     ],
   };
 
   if (isWebpack) {
+    config.plugins.unshift(['transform-object-rest-spread', { 'useBuiltIns': true }],
+      ['fast-async', { spec: true }],
+      'transform-object-entries');
     config.presets[0][1].targets = {
       browsers: args.browsers || '> 2% in US',
     };
