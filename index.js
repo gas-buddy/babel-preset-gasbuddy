@@ -54,9 +54,7 @@ module.exports = function (babel, args) {
     config.plugins.push(['css-modules-transform', {
       generateScopedName: '[name]__[local]___[hash:base64:5]',
     }]);
-    if (env !== 'production') {
-      config.retainLines = true;
-    }
+    config.plugins.push(['transform-object-rest-spread', { useBuiltIns: true }]);
     if (env === 'test') {
       config.plugins.unshift('istanbul');
     }
