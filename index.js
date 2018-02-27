@@ -34,8 +34,11 @@ module.exports = function (babel, args) {
       'transform-object-entries');
     config.presets[0][1].targets = {
       browsers: args.browsers || '> 2% in US',
-      useBuiltIns: true,
     };
+    Object.assign(config.presets[0][1], {
+      modules: false,
+      useBuiltIns: true,
+    });
     config.presets[0][1].modules = false;
     if (env === 'development') {
       try {
