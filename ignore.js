@@ -5,7 +5,7 @@ const path = require('path');
 const findRoot = require('find-root');
 
 module.exports = function reactTest(fn) {
-  const match = fn.match(/[\/]node_modules[\/](.*)/);
+  const match = fn.match(/[\\\/]node_modules[\\\/](.*)/);
   if (match) {
     const mod = match[1];
     try {
