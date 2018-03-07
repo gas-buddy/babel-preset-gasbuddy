@@ -9,7 +9,7 @@ module.exports = function reactTest(fn) {
   if (match) {
     const mod = match[1];
     try {
-      const packagePath = path.join(findRoot(fn), 'package.json');
+      const packagePath = path.join(findRoot(path.normaliize(fn)), 'package.json');
       const package = require(packagePath);
       // Your package's main must be the ES6 source, and there must be
       // a gb key with an object with transpile key that is truthy
