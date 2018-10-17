@@ -17,27 +17,27 @@ module.exports = function (babel, args) {
   const config = {
     sourceMaps: 'inline',
     presets: [
-      ['env', {
+      ['@babel/preset-env', {
         targets: { node: 'current' },
         exclude: ['transform-regenerator', 'transform-async-to-generator'],
       }],
-      'react'
+      '@babel/preset-react'
     ],
     plugins: [
-      'babel-plugin-transform-class-properties'
+      '@babel/plugin-proposal-class-properties',
+      '@babel/plugin-proposal-optional-chaining',        
     ],
   };
 
   if (isWebpack) {
-    config.plugins.unshift(['transform-object-rest-spread', { 'useBuiltIns': true }],
-      ['fast-async', { spec: true }],
-      'transform-object-entries');
+    config.plugins.unshift(['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
+      ['module:fast-async', { spec: true }]);
     config.presets[0][1].targets = {
       browsers: args.browsers || '> 2% in US',
     };
     Object.assign(config.presets[0][1], {
       modules: false,
-      useBuiltIns: true,
+      useBuiltIns: 'usage',
     });
     config.presets[0][1].modules = false;
     if (env === 'development') {
@@ -55,10 +55,10 @@ module.exports = function (babel, args) {
       config.presets.push('react-optimize');
     }
   } else {
-    config.plugins.push(['css-modules-transform', {
+    config.plugins.push(['babel-plugin-css-modules-transform', {
       generateScopedName: '[name]__[local]___[hash:base64:5]',
     }]);
-    config.plugins.push(['transform-object-rest-spread', { useBuiltIns: true }]);
+    config.plugins.push(['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }]);
     if (env === 'test') {
       config.plugins.unshift('istanbul');
     }
