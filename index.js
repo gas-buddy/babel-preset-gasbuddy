@@ -25,7 +25,7 @@ module.exports = function (babel, args) {
     ],
     plugins: [
       '@babel/plugin-proposal-class-properties',
-      '@babel/plugin-proposal-optional-chaining',        
+      '@babel/plugin-proposal-optional-chaining',
     ],
   };
 
@@ -52,7 +52,12 @@ module.exports = function (babel, args) {
       }
     }
     if (env === 'production') {
-      config.presets.push('react-optimize');
+      config.plugins.push(
+        '@babel/plugin-transform-react-constant-elements',
+        '@babel/plugin-transform-react-inline-elements',
+        'babel-plugin-transform-react-remove-prop-types',
+        'babel-plugin-transform-react-class-to-function',
+      );
     }
   } else {
     config.plugins.push(['babel-plugin-css-modules-transform', {
