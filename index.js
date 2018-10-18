@@ -21,7 +21,8 @@ module.exports = function (babel, args) {
         targets: { node: 'current' },
         exclude: ['transform-regenerator', 'transform-async-to-generator'],
       }],
-      '@babel/preset-react'
+      '@babel/preset-react',
+      '@babel/preset-flow',
     ],
     plugins: [
       '@babel/plugin-proposal-class-properties',
