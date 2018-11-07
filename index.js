@@ -22,9 +22,9 @@ module.exports = function (babel, args) {
         exclude: ['transform-regenerator', 'transform-async-to-generator'],
       }],
       '@babel/preset-react',
-      '@babel/preset-flow',
     ],
     plugins: [
+      '@babel/plugin-transform-flow-strip-types',
       '@babel/plugin-proposal-class-properties',
       '@babel/plugin-proposal-optional-chaining',
     ],
