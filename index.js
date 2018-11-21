@@ -15,7 +15,7 @@ module.exports = function (babel, args) {
   const env = process.env.NODE_ENV || 'development';
 
   const config = {
-    sourceMaps: 'inline',
+    sourceMaps: true,
     presets: [
       ['@babel/preset-env', {
         targets: { node: 'current' },
