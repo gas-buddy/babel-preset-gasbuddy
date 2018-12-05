@@ -29,7 +29,6 @@
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-env": "^1.1.11",
     "babel-preset-react": "^6.23.0",
-    "babel-preset-react-optimize": "^1.0.1",
     "fast-async": "^6.2.1"
   },
   "homepage": "https://github.com/gas-buddy/babel-preset-gasbuddy#readme"

@@ -47,9 +47,6 @@ module.exports = function (babel, args) {
         );
       }
     }
-    if (env === 'production') {
-      config.presets.push('react-optimize');
-    }
   } else {
     config.plugins.push(['css-modules-transform', {
       generateScopedName: '[name]__[local]___[hash:base64:5]',
