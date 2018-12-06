@@ -33,14 +33,13 @@ module.exports = function (babel, args) {
   if (isWebpack) {
     config.plugins.unshift(['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
       ['module:fast-async', { spec: true }]);
-    config.presets[0][1].targets = {
-      browsers: args.browsers || '> 2% in US',
-    };
     Object.assign(config.presets[0][1], {
+      targets: {
+        browsers: args.browsers || '> 2% in US',
+      },
       modules: false,
       useBuiltIns: 'usage',
     });
-    config.presets[0][1].modules = false;
     if (env === 'development') {
       try {
         require('react-hot-loader/babel');
