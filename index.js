@@ -34,9 +34,7 @@ module.exports = function (babel, args) {
     config.plugins.unshift(['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
       ['module:fast-async', { spec: true }]);
     Object.assign(config.presets[0][1], {
-      targets: {
-        browsers: args.browsers || '> 2% in US',
-      },
+      targets: args.browsers || '> 2% in US',
       modules: false,
       useBuiltIns: 'usage',
     });
