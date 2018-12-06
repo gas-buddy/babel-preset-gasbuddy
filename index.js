@@ -24,6 +24,7 @@ module.exports = function (babel, args) {
       '@babel/preset-react',
     ],
     plugins: [
+      ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
       '@babel/plugin-transform-flow-strip-types',
       '@babel/plugin-proposal-class-properties',
       '@babel/plugin-proposal-optional-chaining',
@@ -31,8 +32,7 @@ module.exports = function (babel, args) {
   };
 
   if (isWebpack) {
-    config.plugins.unshift(['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
-      ['module:fast-async', { spec: true }]);
+    config.plugins.unshift(['module:fast-async', { spec: true }]);
     Object.assign(config.presets[0][1], {
       targets: args.browsers || '> 2% in US',
       modules: false,
@@ -61,7 +61,6 @@ module.exports = function (babel, args) {
     config.plugins.push(['babel-plugin-css-modules-transform', {
       generateScopedName: '[name]__[local]___[hash:base64:5]',
     }]);
-    config.plugins.push(['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }]);
     if (env === 'test') {
       config.plugins.unshift('istanbul');
     }
