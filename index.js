@@ -47,7 +47,7 @@ module.exports = function (api, options) {
     },
   };
 
-  if (api.env(['development'])) {
+  if (api.env('development')) {
     config.plugins.push('react-hot-loader/babel');
   }
 
