@@ -13,9 +13,6 @@
 module.exports = function (api, options) {
   api.assertVersion(7);
 
-  const isWebpack = (options && options.webpack);
-  const env = process.env.NODE_ENV || 'development';
-
   const config = {
     sourceMaps: true,
     presets: [
