@@ -38,6 +38,9 @@
     "fast-async": "^6.3.8",
     "find-root": "^1.1.0"
   },
+  "peerDependencies": {
+    "react-hot-loader": "^4.x"
+  },
   "engines": {
     "node": ">=8.9"
   },
