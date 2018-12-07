@@ -13,7 +13,7 @@
 module.exports = function (api, options) {
   api.assertVersion(7);
 
-  const config = {
+  return {
     sourceMaps: true,
     presets: [
       ['@babel/preset-env', {
@@ -54,15 +54,12 @@ module.exports = function (api, options) {
       },
       test: {
         plugins: [
-          'istanbul'
+          'istanbul',
         ],
+      },
+      development: {
+        plugins: ['react-hot-loader/babel'],
       }
     },
   };
-
-  if (api.env('development')) {
-    config.plugins.push('react-hot-loader/babel');
-  }
-
-  return config;
 }
