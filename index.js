@@ -10,8 +10,10 @@
  *
  * Will need to add something like: api.cache(() => process.env.WEBPACK_BROWSER_TARGET || '')
  */
-module.exports = function (babel, args) {
-  const isWebpack = (args && args.webpack);
+module.exports = function (api, options) {
+  api.assertVersion(7);
+
+  const isWebpack = (options && options.webpack);
   const env = process.env.NODE_ENV || 'development';
 
   const config = {
@@ -34,7 +36,7 @@ module.exports = function (babel, args) {
     config.plugins.unshift(['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
       ['module:fast-async', { spec: true }]);
     config.presets[0][1].targets = {
-      browsers: args.browsers || '> 2% in US',
+      browsers: options.browsers || '> 2% in US',
     };
     Object.assign(config.presets[0][1], {
       modules: false,
