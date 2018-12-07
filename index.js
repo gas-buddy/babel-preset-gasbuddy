@@ -33,16 +33,12 @@ module.exports = function (api, options) {
   };
 
   if (isWebpack) {
-    config.plugins.unshift(['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
-      ['module:fast-async', { spec: true }]);
-    config.presets[0][1].targets = {
-      browsers: options.browsers || '> 2% in US',
-    };
+    config.plugins.unshift(['module:fast-async', { spec: true }]);
     Object.assign(config.presets[0][1], {
+      targets: args.browsers || '> 2% in US',
       modules: false,
       useBuiltIns: 'usage',
     });
-    config.presets[0][1].modules = false;
     if (env === 'development') {
       try {
         require('react-hot-loader/babel');
@@ -66,7 +62,6 @@ module.exports = function (api, options) {
     config.plugins.push(['babel-plugin-css-modules-transform', {
       generateScopedName: '[name]__[local]___[hash:base64:5]',
     }]);
-    config.plugins.push(['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }]);
     if (env === 'test') {
       config.plugins.unshift('istanbul');
     }
