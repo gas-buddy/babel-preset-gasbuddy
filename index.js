@@ -28,46 +28,40 @@ module.exports = function (babel, args) {
       '@babel/plugin-proposal-class-properties',
       '@babel/plugin-proposal-optional-chaining',
     ],
+    env: {
+      browser: {
+        presets: [
+          ['@babel/preset-env', {
+            targets: options.browsers || '> 2% in US',
+            modules: false,
+            useBuiltIns: 'usage',
+          }],
+        ],
+        plugins: [
+          ['module:fast-async', { spec: true }],
+          '@babel/plugin-transform-react-constant-elements',
+          '@babel/plugin-transform-react-inline-elements',
+          'babel-plugin-transform-react-remove-prop-types',
+          'babel-plugin-transform-react-class-to-function',
+        ],
+      },
+      webserver: {
+        presets: [
+          // We don't want this in config by default in case you're compiling ES modules
+          ['babel-plugin-css-modules-transform', {
+            generateScopedName: '[name]__[local]___[hash:base64:5]',
+          }],
+        ],
+      },
+    },
   };
 
-  if (isWebpack) {
-    config.plugins.unshift(['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
-      ['module:fast-async', { spec: true }]);
-    config.presets[0][1].targets = {
-      browsers: args.browsers || '> 2% in US',
-    };
-    Object.assign(config.presets[0][1], {
-      modules: false,
-      useBuiltIns: 'usage',
-    });
-    config.presets[0][1].modules = false;
-    if (env === 'development') {
-      try {
-        require('react-hot-loader/babel');
-        config.plugins.unshift('react-hot-loader/babel');
-      } catch (error) {
-        console.log(
-          'babel-preset-gasbuddy requires react-hot-loader@^3.0.0-beta.6 for hot load support.\n',
-          'Please add a dev only dependency to your project if you want hot loader support.'
-        );
-      }
-    }
-    if (env === 'production') {
-      config.plugins.push(
-        '@babel/plugin-transform-react-constant-elements',
-        '@babel/plugin-transform-react-inline-elements',
-        'babel-plugin-transform-react-remove-prop-types',
-        'babel-plugin-transform-react-class-to-function',
-      );
-    }
-  } else {
-    config.plugins.push(['babel-plugin-css-modules-transform', {
-      generateScopedName: '[name]__[local]___[hash:base64:5]',
-    }]);
-    config.plugins.push(['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }]);
-    if (env === 'test') {
-      config.plugins.unshift('istanbul');
-    }
+  if (api.env('development')) {
+    config.plugins.push('react-hot-loader/babel');
+  }
+
+  if (api.env('test')) {
+    config.plugins.push('istanbul');
   }
 
   return config;
