@@ -55,15 +55,16 @@ module.exports = function (api, options) {
           }],
         ],
       },
+      test: {
+        plugins: [
+          'istanbul'
+        ],
+      }
     },
   };
 
   if (api.env('development')) {
     config.plugins.push('react-hot-loader/babel');
-  }
-
-  if (api.env('test')) {
-    config.plugins.push('istanbul');
   }
 
   return config;
