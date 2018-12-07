@@ -10,8 +10,10 @@
  *
  * Will need to add something like: api.cache(() => process.env.WEBPACK_BROWSER_TARGET || '')
  */
-module.exports = function (babel, args) {
-  const isWebpack = (args && args.webpack);
+module.exports = function (api, options) {
+  api.assertVersion(7);
+
+  const isWebpack = (options && options.webpack);
   const env = process.env.NODE_ENV || 'development';
 
   const config = {
