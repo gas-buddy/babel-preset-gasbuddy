@@ -24,7 +24,6 @@ module.exports = function (babel, args) {
       '@babel/preset-react',
     ],
     plugins: [
-      ['@babel/plugin-proposal-object-rest-spread', { useBuiltIns: true }],
       '@babel/plugin-transform-flow-strip-types',
       '@babel/plugin-proposal-class-properties',
       '@babel/plugin-proposal-optional-chaining',
