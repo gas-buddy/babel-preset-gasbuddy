@@ -14,6 +14,7 @@ module.exports = function (api, options) {
   api.assertVersion(7);
 
   const isWebpack = (options && options.webpack);
+  const isReactServer = (options && options.reactServer);
   const env = process.env.NODE_ENV || 'development';
 
   const config = {
@@ -59,9 +60,11 @@ module.exports = function (api, options) {
       );
     }
   } else {
-    config.plugins.push(['babel-plugin-css-modules-transform', {
-      generateScopedName: '[name]__[local]___[hash:base64:5]',
-    }]);
+    if (isReactServer) {
+      config.plugins.push(['babel-plugin-css-modules-transform', {
+        generateScopedName: '[name]__[local]___[hash:base64:5]',
+      }]);
+    }
     if (env === 'test') {
       config.plugins.unshift('istanbul');
     }
