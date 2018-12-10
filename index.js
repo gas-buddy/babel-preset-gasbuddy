@@ -36,7 +36,7 @@ module.exports = function (api, options) {
   if (isWebpack) {
     config.plugins.unshift(['module:fast-async', { spec: true }]);
     Object.assign(config.presets[0][1], {
-      targets: args.browsers || '> 2% in US',
+      targets: options.browsers || '> 2% in US',
       modules: false,
       useBuiltIns: 'usage',
     });
