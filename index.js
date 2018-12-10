@@ -13,8 +13,8 @@
 module.exports = function (api, options) {
   api.assertVersion(7);
 
-  const isWebpack = (options && options.webpack);
-  const isReactServer = (options && options.reactServer);
+  const isWebpack = (options && options.webpack) || api.env('webpack');
+  const isReactServer = (options && options.reactServer) || api.env('reactServer');
   const env = process.env.NODE_ENV || 'development';
 
   const config = {
