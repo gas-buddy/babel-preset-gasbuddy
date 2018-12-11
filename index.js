@@ -13,8 +13,8 @@
 module.exports = function (api, options) {
   api.assertVersion(7);
 
-  const isWebpack = (options && options.webpack) || api.env('webpack');
-  const isReactServer = (options && options.reactServer) || api.env('reactServer');
+  const isWebpack = api.env('webpack');
+  const isReactServer = api.env('react-server');
   const env = process.env.NODE_ENV || 'development';
 
   const config = {
@@ -40,17 +40,6 @@ module.exports = function (api, options) {
       modules: false,
       useBuiltIns: 'usage',
     });
-    if (env === 'development') {
-      try {
-        require('react-hot-loader/babel');
-        config.plugins.unshift('react-hot-loader/babel');
-      } catch (error) {
-        console.log(
-          'babel-preset-gasbuddy requires react-hot-loader@^3.0.0-beta.6 for hot load support.\n',
-          'Please add a dev only dependency to your project if you want hot loader support.'
-        );
-      }
-    }
     if (env === 'production') {
       config.plugins.push(
         '@babel/plugin-transform-react-constant-elements',
