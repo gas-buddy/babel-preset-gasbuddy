@@ -13,7 +13,8 @@
 module.exports = function (api, options) {
   api.assertVersion(7);
 
-  const isWebpack = (options && options.webpack);
+  const isWebpack = (options && options.webpack) || api.env('webpack');
+  const isReactServer = (options && options.reactServer) || api.env('reactServer');
   const env = process.env.NODE_ENV || 'development';
 
   const config = {
@@ -35,7 +36,7 @@ module.exports = function (api, options) {
   if (isWebpack) {
     config.plugins.unshift(['module:fast-async', { spec: true }]);
     Object.assign(config.presets[0][1], {
-      targets: args.browsers || '> 2% in US',
+      targets: options.browsers || '> 2% in US',
       modules: false,
       useBuiltIns: 'usage',
     });
@@ -59,9 +60,11 @@ module.exports = function (api, options) {
       );
     }
   } else {
-    config.plugins.push(['babel-plugin-css-modules-transform', {
-      generateScopedName: '[name]__[local]___[hash:base64:5]',
-    }]);
+    if (isReactServer) {
+      config.plugins.push(['babel-plugin-css-modules-transform', {
+        generateScopedName: '[name]__[local]___[hash:base64:5]',
+      }]);
+    }
     if (env === 'test') {
       config.plugins.unshift('istanbul');
     }
