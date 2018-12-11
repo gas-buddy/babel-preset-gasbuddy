@@ -13,8 +13,10 @@
 module.exports = function (api, options) {
   api.assertVersion(7);
 
-  const isWebpack = (options && options.webpack) || api.env('webpack');
-  const isReactServer = api.env('react-server');
+  const isWebpack = api.env('webpack');
+  // A react module is meant to be consumed by a higher level react project,
+  // which means it needs a webpack-like build but w/o CSS transformation
+  const isReactModule = api.env('react-module');
   const env = process.env.NODE_ENV || 'development';
 
   const config = {
@@ -35,11 +37,6 @@ module.exports = function (api, options) {
 
   if (isWebpack) {
     config.plugins.unshift(['module:fast-async', { spec: true }]);
-    Object.assign(config.presets[0][1], {
-      targets: options.browsers || '> 2% in US',
-      modules: false,
-      useBuiltIns: 'usage',
-    });
     if (env === 'production') {
       config.plugins.push(
         '@babel/plugin-transform-react-constant-elements',
@@ -48,16 +45,22 @@ module.exports = function (api, options) {
         'babel-plugin-transform-react-class-to-function',
       );
     }
-  } else {
-    if (isReactServer) {
-      config.plugins.push(['babel-plugin-css-modules-transform', {
-        generateScopedName: '[name]__[local]___[hash:base64:5]',
-      }]);
-    }
-    if (env === 'test') {
-      config.plugins.unshift('istanbul');
-    }
+  }
+  if (isWebpack || isReactModule) {
+    Object.assign(config.presets[0][1], {
+      targets: options.browsers || '> 2% in US',
+      modules: false,
+      useBuiltIns: 'usage',
+    });
+  }
+  if (!isReactModule) {
+    config.plugins.push(['babel-plugin-css-modules-transform', {
+      generateScopedName: '[name]__[local]___[hash:base64:5]',
+    }]);
   }
 
+  if (!isWebpack && !isReactModule && env === 'test') {
+    config.plugins.unshift('istanbul');
+  }
   return config;
 }
