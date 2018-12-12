@@ -47,7 +47,7 @@ module.exports = function (api, options) {
   if (isReactModule || !isWebpack) {
     config.plugins.push(['babel-plugin-css-modules-transform', {
       generateScopedName: '[name]__[local]___[hash:base64:5]',
-      keepImport: true,
+      keepImport: env === 'development',
     }]);
   }
 
