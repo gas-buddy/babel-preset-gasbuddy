@@ -44,7 +44,7 @@ module.exports = function (api, options) {
       useBuiltIns: 'usage',
     });
   }
-  if (!isReactModule) {
+  if (isReactModule || !isWebpack) {
     config.plugins.push(['babel-plugin-css-modules-transform', {
       generateScopedName: '[name]__[local]___[hash:base64:5]',
     }]);
