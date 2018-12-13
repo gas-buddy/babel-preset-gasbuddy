@@ -37,14 +37,28 @@ module.exports = function (api, options) {
       );
     }
   }
-  if (isWebpack || isReactModule) {
+  if (isWebpack) {
     Object.assign(config.presets[0][1], {
       targets: browserTarget,
       modules: false,
       useBuiltIns: 'usage',
     });
   }
-  if (isReactModule || !isWebpack) {
+  if (isReactModule) {
+    // This is the babel-only build of a package intended to be node module, which
+    // needs CSS names mangled just like it will be when included from node_modules
+    const pkg = process.env.npm_package_name;
+    config.plugins.push(['babel-plugin-css-modules-transform', {
+      generateScopedName: '[name]__[local]___[hash:base64:5]',
+      // Two important conventions here - source in src and build-webpack for output.
+      // Would be nice to pass this in somehow, but all I can think of is env
+      rootDir: process.env.BABEL_ROOT_DIR || `${process.cwd()}/src`,
+      hashPrefix: process.env.BABEL_HASH_PREFIX || `node_modules/${pkg}/build-webpack/`,
+    }]);
+  } else if (!isWebpack) {
+    // This is just the node build of a project, which needs to
+    // transform css names like the webpack config does.
+    // TODO this forced agreement is denormalized. Maybe a module?
     config.plugins.push(['babel-plugin-css-modules-transform', {
       generateScopedName: '[name]__[local]___[hash:base64:5]',
     }]);
