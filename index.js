@@ -24,6 +24,7 @@ module.exports = function (api, options) {
       '@babel/plugin-proposal-class-properties',
       '@babel/plugin-proposal-optional-chaining',
       '@babel/plugin-syntax-dynamic-import',
+      'babel-plugin-macros',
     ],
   };
 
