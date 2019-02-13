@@ -23,6 +23,7 @@ module.exports = function (api, options) {
       '@babel/plugin-transform-flow-strip-types',
       '@babel/plugin-proposal-class-properties',
       '@babel/plugin-proposal-optional-chaining',
+      '@babel/plugin-syntax-dynamic-import',
     ],
   };
 
@@ -62,6 +63,8 @@ module.exports = function (api, options) {
     config.plugins.push(['babel-plugin-css-modules-transform', {
       generateScopedName: '[name]__[local]___[hash:base64:5]',
     }]);
+    // Converts import() statements into require() statements for Node.js consumption
+    config.plugins.push('babel-plugin-dynamic-import-node');
   }
 
   if (!isWebpack && !isReactModule && env === 'test') {
