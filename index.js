@@ -23,6 +23,7 @@ module.exports = function (api, options) {
       '@babel/plugin-transform-flow-strip-types',
       '@babel/plugin-proposal-class-properties',
       '@babel/plugin-proposal-optional-chaining',
+      '@loadable/babel-plugin',
       '@babel/plugin-syntax-dynamic-import',
       'babel-plugin-macros',
     ],
