@@ -45,6 +45,7 @@ module.exports = function (api, options) {
       targets: browserTarget,
       modules: false,
       useBuiltIns: 'usage',
+      corejs: 3,
     });
   }
   if (isReactModule) {
