@@ -70,8 +70,5 @@ module.exports = function (api, options) {
     config.plugins.push('babel-plugin-dynamic-import-node');
   }
 
-  if (!isWebpack && !isReactModule && env === 'test') {
-    config.plugins.unshift('istanbul');
-  }
   return config;
 }

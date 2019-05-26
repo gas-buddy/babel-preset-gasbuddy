@@ -1,6 +1,6 @@
 {
   "name": "babel-preset-gasbuddy",
-  "version": "5.5.0",
+  "version": "5.6.0",
   "description": "GasBuddy opinions about the best set of Babel things to use",
   "main": "index.js",
   "repository": {
@@ -34,7 +34,6 @@
     "@loadable/babel-plugin": "^5.10.0",
     "babel-plugin-css-modules-transform": "^1.6.1",
     "babel-plugin-dynamic-import-node": "^2.2.0",
-    "babel-plugin-istanbul": "^5.1.4",
     "babel-plugin-macros": "^2.5.1",
     "babel-plugin-transform-react-class-to-function": "^1.2.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
