@@ -1,9 +1,9 @@
 name: Node.js Package
 
 on:
-  push:
-    branches:
-      - master
+  release:
+    types: [published]
+  workflow_dispatch:
 
 permissions: {}
 
@@ -13,11 +13,12 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
       - run: npm ci
+      - run: npm test
 
   publish-npm:
     needs: build
@@ -26,14 +27,18 @@ jobs:
       id-token: write
       contents: read
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org/
-      - run: npm ci
       - name: Publish
         run: |
+          VERSION=$(node -p "require('./package.json').version")
           NPM_TAG=$(node -p "require('./package.json').version.split('-')[1]?.split('.')[0] || 'latest'")
-          echo "Publishing with dist-tag: $NPM_TAG"
+          if npm view "$(node -p "require('./package.json').name")@$VERSION" version >/dev/null 2>&1; then
+            echo "Version $VERSION already published — skipping"
+            exit 0
+          fi
+          echo "Publishing $VERSION with dist-tag: $NPM_TAG"
           npm publish --tag "$NPM_TAG"
