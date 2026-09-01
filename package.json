@@ -1,5 +1,5 @@
 {
-  "name": "babel-preset-gasbuddy",
+  "name": "@gasbuddy/babel-preset-gasbuddy",
   "version": "7.0.0",
   "description": "GasBuddy opinions about the best set of Babel things to use",
   "main": "index.js",
@@ -47,5 +47,8 @@
   "engines": {
     "node": ">=14"
   },
-  "homepage": "https://github.com/gas-buddy/babel-preset-gasbuddy#readme"
+  "homepage": "https://github.com/gas-buddy/babel-preset-gasbuddy#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }
