@@ -1,7 +1,24 @@
-# Babel 7.x presets for Node 8.x with GasBuddy twist
+# @gasbuddy/babel-preset-gasbuddy
 
-Based on [babel-preset-node6](https://github.com/Salakar/babel-preset-node6) and [babel-preset-es2017](https://github.com/bettiolo/babel-preset-es2017)
+GasBuddy's shared Babel preset — env + React + TypeScript in one place, so dependent project configuration lives here.
+
+Published under the `@gasbuddy` scope as of v7. The unscoped `babel-preset-gasbuddy` package is frozen at 6.x (its npm ownership predates the org) — new consumers and all v7+ upgrades should use this package.
+
+## Usage
+
+```sh
+npm install --save-dev @gasbuddy/babel-preset-gasbuddy
+```
+
+```js
+// babel.config.js
+module.exports = {
+  extends: '@gasbuddy/babel-preset-gasbuddy',
+};
+```
+
+Requires Node >= 14.
 
 ## Why
 
-Because we want high performance node8-compatible code with transparent React support and small bundles... and so we can modify all our dependent project configuration in one place.
+High performance node-compatible output with transparent React and TypeScript support and small bundles — `.ts`/`.tsx` are compiled via `@babel/preset-typescript` (self-gated on file extension; `.js`/`.jsx` output is byte-identical to v6).

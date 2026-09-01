@@ -1,6 +1,6 @@
 {
-  "name": "babel-preset-gasbuddy",
-  "version": "7.0.0",
+  "name": "@gasbuddy/babel-preset-gasbuddy",
+  "version": "8.0.0",
   "description": "GasBuddy opinions about the best set of Babel things to use",
   "main": "index.js",
   "scripts": {
@@ -12,12 +12,13 @@
   },
   "keywords": [
     "babel",
-    "babel-preset-node6",
+    "babel-preset-node14",
     "es2017",
     "es6",
     "es7",
     "async",
-    "babel-preset"
+    "babel-preset",
+    "babel-preset-typescript"
   ],
   "author": "GasBuddy",
   "license": "MIT",
@@ -45,7 +46,10 @@
     "find-root": "^1.1.0"
   },
   "engines": {
-    "node": ">=8.9"
+    "node": ">=14"
   },
-  "homepage": "https://github.com/gas-buddy/babel-preset-gasbuddy#readme"
+  "homepage": "https://github.com/gas-buddy/babel-preset-gasbuddy#readme",
+  "publishConfig": {
+    "access": "public"
+  }
 }
