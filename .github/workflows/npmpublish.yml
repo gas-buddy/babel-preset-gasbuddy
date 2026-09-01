@@ -5,9 +5,13 @@ on:
     branches:
       - master
 
+permissions: {}
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
@@ -18,14 +22,18 @@ jobs:
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
         with:
-          node-version: 10
+          node-version: 24
           registry-url: https://registry.npmjs.org/
       - run: npm ci
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
+      - name: Publish
+        run: |
+          NPM_TAG=$(node -p "require('./package.json').version.split('-')[1]?.split('.')[0] || 'latest'")
+          echo "Publishing with dist-tag: $NPM_TAG"
+          npm publish --tag "$NPM_TAG"
