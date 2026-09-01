@@ -30,5 +30,5 @@ GasBuddy's shared Babel preset: `@babel/preset-env` + `@babel/preset-react` + `@
 
 ## Conventions
 
-- Version bumps are made explicitly by the maintainer at release time — do not bump `version` in feature PRs.
+- Final version bumps are made explicitly by the maintainer at release time — do not stamp a final version in a feature PR. Pre-release bumps in feature PRs are fine (e.g. `7.1.0-beta.0`): merging to master auto-publishes, and the workflow derives the dist-tag from the version, so a beta publishes under the `beta` tag and never captures `latest`.
 - Keep changes surgical; this package fans out into every consumer's compile pipeline.
