@@ -45,7 +45,7 @@
     "find-root": "^1.1.0"
   },
   "engines": {
-    "node": ">=8.9"
+    "node": ">=14"
   },
   "homepage": "https://github.com/gas-buddy/babel-preset-gasbuddy#readme"
 }
