@@ -7,7 +7,7 @@ GasBuddy's shared Babel preset: `@babel/preset-env` + `@babel/preset-react` + `@
 ## Naming history — important
 
 - v7+ publishes as **`@gasbuddy/babel-preset-gasbuddy`** (org-scoped, `publishConfig.access: public`).
-- The unscoped `babel-preset-gasbuddy` npm package is **frozen at 6.x** — its sole npm maintainer predates the org and departed; nobody at GasBuddy can publish to it or change its settings. Never try to publish or deprecate the unscoped name.
+- The unscoped `babel-preset-gasbuddy` npm package is **frozen at 6.x**. Never publish or deprecate the unscoped name.
 - Legacy repos (node-14 era) intentionally remain on unscoped 6.x. Do not migrate them here without an explicit ask.
 
 ## Invariants (do not break)
