@@ -12,12 +12,13 @@
   },
   "keywords": [
     "babel",
-    "babel-preset-node6",
+    "babel-preset-node14",
     "es2017",
     "es6",
     "es7",
     "async",
-    "babel-preset"
+    "babel-preset",
+    "babel-preset-typescript"
   ],
   "author": "GasBuddy",
   "license": "MIT",
