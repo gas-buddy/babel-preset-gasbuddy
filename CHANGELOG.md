@@ -1,6 +1,6 @@
 # Changelog
 
-## 7.0.0
+## 8.0.0
 
 - **BREAKING**: package renamed to `@gasbuddy/babel-preset-gasbuddy` (org-scoped; enables org-managed publishing/OIDC — the unscoped name's npm ownership predates the org and is frozen at 6.x). Update babel configs: `extends: '@gasbuddy/babel-preset-gasbuddy'`.
 
