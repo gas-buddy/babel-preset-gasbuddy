@@ -25,7 +25,7 @@ GasBuddy's shared Babel preset: `@babel/preset-env` + `@babel/preset-react` + `@
 ## CI / publishing
 
 - `.github/workflows/nodejs.yml`: install + test across the node matrix on every push.
-- `.github/workflows/npmpublish.yml`: publish on GitHub release. Uses **npm OIDC trusted publishing** (job-scoped `id-token: write`, no npm token) with dist-tag derivation from the version (`1.2.3-beta.0` → `beta`, plain → `latest`). Publish job runs node 24 (bundled npm ≥11.5, the OIDC floor); do not downgrade it below that without pinning `npx -y npm@11.x`.
+- `.github/workflows/npmpublish.yml`: publish on push to master (also manually runnable via workflow_dispatch); an already-published version skips cleanly. Uses **npm OIDC trusted publishing** (job-scoped `id-token: write`, no npm token) with dist-tag derivation from the version (`1.2.3-beta.0` → `beta`, plain → `latest`). Publish job runs node 24 (bundled npm ≥11.5, the OIDC floor); do not downgrade it below that without pinning `npx -y npm@11.x`.
 - Trusted publisher must exist on npmjs.com for this package (repo `gas-buddy/babel-preset-gasbuddy`, workflow `npmpublish.yml`). The very first publish of a new scoped version line may need to be manual by an org member.
 
 ## Conventions
