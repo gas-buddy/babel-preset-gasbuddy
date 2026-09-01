@@ -18,7 +18,6 @@ module.exports = function (api, options) {
         exclude: ['transform-regenerator', 'transform-async-to-generator'],
       }],
       '@babel/preset-react',
-      '@babel/preset-typescript',
     ],
     plugins: [
       '@babel/plugin-transform-flow-strip-types',

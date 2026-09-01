@@ -1,8 +1,11 @@
 {
   "name": "babel-preset-gasbuddy",
-  "version": "6.0.0",
+  "version": "7.0.0",
   "description": "GasBuddy opinions about the best set of Babel things to use",
   "main": "index.js",
+  "scripts": {
+    "test": "node __tests__/preset.test.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gas-buddy/babel-preset-gasbuddy.git"
@@ -31,6 +34,7 @@
     "@babel/plugin-transform-react-inline-elements": "^7.9.0",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
+    "@babel/preset-typescript": "^7.29.7",
     "@loadable/babel-plugin": "^5.12.0",
     "babel-plugin-css-modules-transform": "^1.6.1",
     "babel-plugin-dynamic-import-node": "^2.3.0",
